@@ -5,6 +5,7 @@ require("./configs/mongoose");
 
 const { createUser, getUsers } = require("./controllers/users");
 const { createExercise } = require("./controllers/exercise");
+const { getUserLogs } = require("./controllers/logs");
 
 app.use(cors());
 app.use(express.static("public"));
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.post("/api/users", createUser);
 app.get("/api/users", getUsers);
 app.post("/api/users/:_id/exercises", createExercise);
-app.get("/api/users/:_id/logs", (req, res) => {});
+app.get("/api/users/:_id/logs", getUserLogs);
 
 //Error handler
 app.use(function (err, req, res, next) {
