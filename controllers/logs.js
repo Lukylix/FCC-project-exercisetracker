@@ -9,8 +9,6 @@ exports.getUserLogs = (req, res, next) => {
       delete user.id;
       let query = { user_id: req.params._id };
       if (req.query.from && req.query.to) query.date = { $gte: new Date(req.query.from), $lt: new Date(req.query.to) };
-      // let limit = null;
-      // if (req.query.limit) limit = { limite: req.query.limit };
       Exercise.find(query)
         .select("-user_id -__v -_id")
         .limit(parseInt(req.query.limit))
